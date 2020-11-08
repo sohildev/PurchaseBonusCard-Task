@@ -1,0 +1,92 @@
+<ng-container *ngFor="let item of data">
+  <main role="main">
+    <div class="album py-5 bg-light">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card m-2 p-2 shadow-sm" style="background: maroon;">
+              <div class="card-body" style="background: pink; border-radius: 10px;">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="p-2 align-items-center" style="border: maroon; width: 200px;
+                   background: white;border-style: dashed;align-items: center;">
+                    <h4 class="ml-4">{{item?.code}}</h4>
+                  </div>
+                  <div class="p-2 " style=" width: 180px; background-image: linear-gradient(95deg,#29ef44,#1c5b04);">
+                    <small class="text align-items-center "
+                      style="color:white;font-size: 20px;">{{item?.ribbon_msg}}</small>
+                  </div>
+                </div>
+                <hr style="background-color: black;">
+                <div class="row">
+                  <div class="col-1">
+                    <span class="d-flex justify-content-between align-items-center"
+                      style="background-color: red; height: 30px; width:30px; border-radius: 50px;float:left; ">
+                      <span style="color: white;margin: 8px;"><b>%</b></span>
+                    </span>
+                  </div>
+                  <div class="col-7">
+                    <p class="h4">Get
+                      ₹{{item?.slabs[item?.slabs.length-1]?.wagered_percent + item?.slabs[item?.slabs.length-1]?.otc_percent}}%
+                      upto
+                      ₹{{item?.slabs[0]?.wagered_max + item?.slabs[0]?.otc_max}}</p>
+                    <p class="h5">Valid till {{item?.valid_until|date:"d MMMM ,y h:mm:ss a "}}</p>
+                    <p class="h6" style="color: #ff9a04;">Hide Details <span
+                        style="color: gray; font-size: 15px;"><b>^</b></span></p>
+                  </div>
+                  <div>
+                    <div style="border-left: 1px solid black;float:right; height: 100px;"></div>
+                  </div>
+                  <div class="col">
+                    <p class="h4">Min.Deposit</p>
+                    <p class="h4" style="text-align: right;">₹{{item?.slabs[0]?.min}}</p>
+                    <p class="h6" style="color: #0d9b10; text-align: right;">Applied </p>
+                  </div>
+                </div>
+                <hr style="background-color: black;">
+                <hr class="mt-2" style="background-color: black;">
+                <table class="table table-borderless">
+                  <thead style="border-bottom: black; border-width: 10px;">
+                    <tr>
+                      <td style="text-align: center; ">Purchase Amount</td>
+                      <td style="text-align: center; ">Bonus Amount</td>
+                      <td style="text-align: center; ">Instant cash</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of item?.slabs">
+                      <td style="text-align: center; font-weight: bold;font-size: 13px; ">>= {{obj?.min }} &
+                        <{{obj?.max }} </td>
+                      <td style="text-align: center; font-weight: bold;font-size: 13px; ">{{obj?.max }}% (Max.₹
+                        {{obj?.wagered_max}})
+                      </td>
+                      <td style="text-align: center; font-weight: bold;font-size: 13px; ">{{obj?.otc_percent }}% (Max.₹
+                        {{obj?.otc_max}})
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr style="background-color: black;">
+                <div class="row" style="border-top: #0d9b10;">
+                  <div class="col-8">
+                    <p class="h6" style="color: white;">For every
+                      <span style="color: orange;">₹{{item?.wager_to_release_ratio_numerator}}</span>
+                      bet
+                      <span style="color: orange;">₹{{item?.wager_to_release_ratio_denominator}}</span> will be released
+                      from the bonus amount
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p class="h6" style="color: white;">Bonus expiry
+                      <span style="color: orange;">{{item?.wager_bonus_expiry}} days</span>
+                      from the issue
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</ng-container>
